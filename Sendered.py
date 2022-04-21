@@ -10,7 +10,7 @@ import time
 
 
 db = base.Base("localhost")
-bot = telebot.TeleBot('5188999206:AAFDzoHQCE6_YTsAxTA8hlhJD4M2tPXyVh4')
+bot = telebot.TeleBot('5194270771:AAF2zvg8MEBgCjOusmaIyX6u4yF7X_CtmCw')
 retry = Retry(connect=3, backoff_factor=0.5)
 
 
@@ -38,8 +38,8 @@ def sender():
                     bot.send_photo(u["usrId"], photo=l["img"], caption=txt,reply_markup=markup)
             else:
                 print("type 3")
-                #bot.send_photo(-1001755014693, photo=l["img"],caption=txt,reply_markup=markup)
-                bot.send_photo(-1001504500389, photo=l["img"],caption=txt,reply_markup=markup)
+                bot.send_photo(-1001755014693, photo=l["img"],caption=txt,reply_markup=markup)
+                #bot.send_photo(-1001504500389, photo=l["img"],caption=txt,reply_markup=markup)
     # except:
 
 
