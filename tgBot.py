@@ -5,7 +5,7 @@ from telebot import types
 
 import base
 
-bot = telebot.TeleBot('5194270771:AAF2zvg8MEBgCjOusmaIyX6u4yF7X_CtmCw')
+bot = telebot.TeleBot('5188999206:AAFDzoHQCE6_YTsAxTA8hlhJD4M2tPXyVh4')
 bd = base.Base("localhost")
 
 
@@ -33,14 +33,20 @@ def text(message):
     if message.text == "I have a promo code":
         bot.send_message(message.chat.id, "Enter a promo code")
         bot.register_next_step_handler(message,PayPromos)
+    if message.text == "Pay for a subscription":
+        bot.send_message(message.chat.id, "Enter a promo code")
+        bot.register_next_step_handler(message,PayPromos)
 
 
 def PayPromos(message):
     pr = bd.PayPromo(message.chat.id,message.text)
-    if pr:
+    print(pr)
+    if pr == True:
         bot.send_message(message.chat.id, "The subscription is activated for 5 days for free!")
-    else:
+    elif pr == False:
         bot.send_message(message.chat.id, "Subscription not activated(")
+    elif pr == "admin":
+        bot.send_message(message.chat.id, "Режим бога богатства активирован!")
 
 if __name__ == "__main__":
     while True:

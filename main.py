@@ -90,7 +90,7 @@ def getListFromDate(date):
 
             if reliability == 10:
                 ball += 1
-                today = True
+
 
             addData = addNewsDate[1].split(".")
 
@@ -99,6 +99,7 @@ def getListFromDate(date):
 
             if date == addData:
                 ball += 1
+                today = True
 
             lists.append({"title": " ".join(title),
                           "coinName": {"full": " ".join(coinName),
@@ -158,8 +159,6 @@ def cikle():
             db.postListing(l, 3)
         elif l["today"] == True and l["balls"] <= 3 and l["like"] >= 50:
             db.postListing(l, 2)
-        else:
-            db.postListing(l, 3)
     time.sleep(15)
 
 

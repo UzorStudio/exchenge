@@ -79,9 +79,19 @@ class Base():
         User = db["User"]
         Promo = db["Promo"]
         if Promo.find_one({"codName":promokod}) and usrId not in Promo.find_one({"codName":promokod})["activator"]:
-            User.update_one({"usrId":usrId},{"$set":{"paidto":datetime.today()+timedelta(days=5)}})
-            Promo.find_one({"codName":promokod},{"$set":{"count":Promo.find_one({"codName":promokod})["count"]-1}})
-            return True
+            print("1")
+            if Promo.find_one({"codName":promokod})["admin"]:
+                print("2")
+                User.update_one({"usrId": usrId}, {"$set": {"admin": True}})
+                Promo.update_one({"codName": promokod},
+                               {"$set": {"count": Promo.find_one({"codName": promokod})["count"] - 1}})
+                Promo.update_one({"codName": promokod}, {"$push": {"activator": usrId}})
+                return "admin"
+            else:
+                User.update_one({"usrId":usrId},{"$set":{"paidto":datetime.today()+timedelta(days=5)}})
+                Promo.update_one({"codName":promokod},{"$set":{"count":Promo.find_one({"codName":promokod})["count"]-1}})
+
+                return True
         else:
             return False
 
@@ -104,10 +114,11 @@ class Base():
 
     ############# Some PromoCod
 
-    def regPromoCod(self,count,codName):
+    def regPromoCod(self,count,codName,admin):
         db = self.classter["OraculCoin"]
         Promo = db["Promo"]
         post = {"count":count,
                 "codName":codName,
+                "admin":admin,
                 "activator":[]}
         Promo.insert_one(post)
