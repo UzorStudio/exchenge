@@ -180,4 +180,4 @@ if __name__ == "__main__":
         except:
             print("errrors wtf mzfck")
             time.sleep(3)
-            errorsreturner()
+            pass
