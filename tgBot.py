@@ -5,8 +5,8 @@ from telebot import types
 
 import base
 
-#bot = telebot.TeleBot('5194270771:AAF2zvg8MEBgCjOusmaIyX6u4yF7X_CtmCw')
-bot = telebot.TeleBot('5188999206:AAFDzoHQCE6_YTsAxTA8hlhJD4M2tPXyVh4') #dev
+bot = telebot.TeleBot('5194270771:AAF2zvg8MEBgCjOusmaIyX6u4yF7X_CtmCw')
+#bot = telebot.TeleBot('5188999206:AAFDzoHQCE6_YTsAxTA8hlhJD4M2tPXyVh4') #dev
 bd = base.Base("localhost")
 
 
